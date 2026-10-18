@@ -1,0 +1,648 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 220 14% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262 83% 58%;
+
+    --radius: 0.75rem;
+
+    --chart-1: 262 83% 58%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 142 76% 36%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 0 84% 60%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 262 83% 58%;
+    --sidebar: 0 0% 98%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 210 20% 98%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 263 70% 50%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 64%;
+
+    --accent: 215 28% 17%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 263 70% 50%;
+
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 263 70% 50%;
+    --sidebar-primary-foreground: 210 20% 98%;
+    --sidebar-accent: 215 28% 17%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 215 28% 17%;
+    --sidebar-ring: 263 70% 50%;
+    --sidebar: 224 71% 4%;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+  }
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root:not(.dark) .glass {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:root:not(.dark) .glass-card {
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar */
+.dark ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+:root:not(.dark) ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.2);
+  border-radius: 3px;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+/* Slider custom styles */
+[data-orientation="horizontal"] [data-role="track"] {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-orientation="horizontal"] [data-role="range"] {
+  background: linear-gradient(90deg, #a855f7, #3b82f6) !important;
+}
+
+[data-orientation="horizontal"] [data-role="thumb"] {
+  border-color: #a855f7 !important;
+  background: white !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   LIGHT MODE THEME OVERRIDES
+   All components use hardcoded dark classes (text-white, bg-white/5, 
+   text-slate-400, from-slate-950, etc). These CSS overrides make 
+   them adapt when .dark is removed from <html>.
+   ──────────────────────────────────────────────────────────────── */
+
+/* ── Page background gradients ── */
+:root:not(.dark) .from-slate-950 {
+  --tw-gradient-from: #f8fafc !important; /* slate-50 */
+}
+:root:not(.dark) .via-purple-950 {
+  --tw-gradient-via: #faf5ff !important; /* purple-50 */
+}
+:root:not(.dark) .via-purple-950\/50 {
+  --tw-gradient-via: rgba(250, 245, 255, 0.5) !important;
+}
+:root:not(.dark) .to-slate-950 {
+  --tw-gradient-to: #f8fafc !important; /* slate-50 */
+}
+
+/* ── Text colors ── */
+:root:not(.dark) .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+:root:not(.dark) .text-slate-300 {
+  color: #334155 !important; /* slate-700 */
+}
+:root:not(.dark) .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+:root:not(.dark) .text-slate-500 {
+  color: #64748b !important; /* slate-500 (stays) */
+}
+:root:not(.dark) .text-slate-600 {
+  color: #94a3b8 !important; /* slate-400 */
+}
+
+/* ── Background overlays with white ── */
+:root:not(.dark) .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+:root:not(.dark) .bg-white\/\[0\.02\] {
+  background-color: rgba(0, 0, 0, 0.01) !important;
+}
+:root:not(.dark) .bg-white\/\[0\.03\] {
+  background-color: rgba(0, 0, 0, 0.015) !important;
+}
+:root:not(.dark) .bg-white\/\[0\.04\] {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+:root:not(.dark) .bg-white\/\[0\.07\] {
+  background-color: rgba(0, 0, 0, 0.035) !important;
+}
+:root:not(.dark) .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+:root:not(.dark) .bg-white\/20 {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+:root:not(.dark) .hover\:bg-white\/5:hover {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+:root:not(.dark) .hover\:bg-white\/10:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+:root:not(.dark) .hover\:bg-white\/\[0\.07\]:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ── Border overlays with white ── */
+:root:not(.dark) .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+:root:not(.dark) .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+:root:not(.dark) .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+:root:not(.dark) .hover\:border-white\/20:hover {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ── Slate backgrounds ── */
+:root:not(.dark) .bg-slate-800 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+}
+:root:not(.dark) .bg-slate-900 {
+  background-color: #f8fafc !important; /* slate-50 */
+}
+:root:not(.dark) .bg-slate-900\/50 {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+}
+:root:not(.dark) .bg-slate-950 {
+  background-color: #ffffff !important;
+}
+
+/* ── Hover text colors ── */
+:root:not(.dark) .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* ── Placeholder colors ── */
+:root:not(.dark) .placeholder\:text-slate-500::placeholder {
+  color: #94a3b8 !important;
+}
+:root:not(.dark) .placeholder\:text-slate-600::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* ── Input styling in light mode ── */
+:root:not(.dark) input.bg-white\/5,
+:root:not(.dark) textarea.bg-white\/5,
+:root:not(.dark) .bg-white\/5 input,
+:root:not(.dark) .bg-white\/5 textarea {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* ── Card-like surfaces ── */
+:root:not(.dark) .backdrop-blur-xl {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px);
+}
+:root:not(.dark) .backdrop-blur-md {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* ── Shadow adjustments ── */
+:root:not(.dark) .shadow-purple-500\/25 {
+  --tw-shadow-color: rgba(168, 85, 247, 0.12) !important;
+}
+:root:not(.dark) .shadow-purple-500\/10 {
+  --tw-shadow-color: rgba(168, 85, 247, 0.06) !important;
+}
+
+/* ── Tooltip in light mode ── */
+:root:not(.dark) [data-radix-popper-content-wrapper] .bg-slate-800 {
+  background-color: #1e293b !important; /* keep tooltip dark */
+  color: #f8fafc !important;
+}
+
+/* ── Select dropdown ── */
+:root:not(.dark) [data-radix-popper-content-wrapper] .bg-slate-900 {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+:root:not(.dark) [data-radix-select-viewport] .text-white {
+  color: #0f172a !important;
+}
+:root:not(.dark) [data-radix-select-viewport] .hover\:bg-white\/10:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* ── Specific colored accents (keep in both themes) ── */
+:root:not(.dark) .text-purple-300 {
+  color: #7c3aed !important; /* purple-600 — stronger in light */
+}
+:root:not(.dark) .text-purple-400 {
+  color: #7c3aed !important;
+}
+:root:not(.dark) .text-blue-300 {
+  color: #2563eb !important;
+}
+:root:not(.dark) .text-blue-400 {
+  color: #2563eb !important;
+}
+
+/* ── Popover / notification panels ── */
+:root:not(.dark) [data-radix-popper-content-wrapper] {
+  --tw-shadow: 0 10px 25px -5px rgba(0,0,0,0.1) !important;
+}
+
+/* ── Index page (already light but needs dark mode support) ── */
+.dark .bg-\[\#f3f8dd\] {
+  background-color: #0f172a !important; /* slate-900 */
+}
+.dark .bg-\[\#bde7fa\] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ── Podium highlights in rankings ── */
+:root:not(.dark) .bg-yellow-500\/5 {
+  background-color: rgba(234, 179, 8, 0.08) !important;
+}
+:root:not(.dark) .bg-slate-500\/5 {
+  background-color: rgba(100, 116, 139, 0.06) !important;
+}
+:root:not(.dark) .bg-amber-500\/5 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+}
+
+/* ── Status badge backgrounds ── */
+:root:not(.dark) .bg-purple-500\/20 {
+  background-color: rgba(168, 85, 247, 0.1) !important;
+}
+:root:not(.dark) .bg-purple-500\/10 {
+  background-color: rgba(168, 85, 247, 0.06) !important;
+}
+:root:not(.dark) .bg-purple-500\/5 {
+  background-color: rgba(168, 85, 247, 0.04) !important;
+}
+:root:not(.dark) .bg-blue-500\/20 {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
+:root:not(.dark) .bg-blue-500\/10 {
+  background-color: rgba(59, 130, 246, 0.06) !important;
+}
+
+/* ── Score verdict cards ── */
+:root:not(.dark) .bg-green-500\/10 {
+  background-color: rgba(34, 197, 94, 0.08) !important;
+}
+:root:not(.dark) .bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.06) !important;
+}
+:root:not(.dark) .bg-yellow-500\/10 {
+  background-color: rgba(234, 179, 8, 0.06) !important;
+}
+:root:not(.dark) .bg-orange-500\/10 {
+  background-color: rgba(249, 115, 22, 0.06) !important;
+}
+
+/* ── Progress bar track ── */
+:root:not(.dark) .bg-white\/5.h-2,
+:root:not(.dark) .bg-white\/5.h-1\.5 {
+  background-color: #e2e8f0 !important;
+}
+
+/* ── ThemeToggle button in light mode ── */
+:root:not(.dark) .text-slate-400.hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* ── Additional status text colors ── */
+:root:not(.dark) .text-slate-200 {
+  color: #334155 !important; /* slate-700 */
+}
+:root:not(.dark) .text-green-300 {
+  color: #16a34a !important; /* green-600 */
+}
+:root:not(.dark) .text-green-400 {
+  color: #16a34a !important;
+}
+:root:not(.dark) .text-green-400\/80 {
+  color: rgba(22, 163, 74, 0.85) !important;
+}
+:root:not(.dark) .text-green-500 {
+  color: #16a34a !important;
+}
+:root:not(.dark) .text-red-400 {
+  color: #dc2626 !important; /* red-600 */
+}
+:root:not(.dark) .text-yellow-400 {
+  color: #ca8a04 !important; /* yellow-600 */
+}
+:root:not(.dark) .text-yellow-500 {
+  color: #a16207 !important; /* yellow-700 */
+}
+:root:not(.dark) .text-orange-400 {
+  color: #ea580c !important; /* orange-600 */
+}
+:root:not(.dark) .text-amber-600 {
+  color: #92400e !important; /* amber-800 */
+}
+:root:not(.dark) .text-indigo-400 {
+  color: #4f46e5 !important; /* indigo-600 */
+}
+
+/* ── Additional background alpha colors ── */
+:root:not(.dark) .bg-indigo-500\/10 {
+  background-color: rgba(99, 102, 241, 0.06) !important;
+}
+:root:not(.dark) .bg-purple-500\/15 {
+  background-color: rgba(168, 85, 247, 0.08) !important;
+}
+:root:not(.dark) .bg-blue-500\/15 {
+  background-color: rgba(59, 130, 246, 0.08) !important;
+}
+:root:not(.dark) .bg-blue-500\/5 {
+  background-color: rgba(59, 130, 246, 0.04) !important;
+}
+:root:not(.dark) .bg-green-500\/20 {
+  background-color: rgba(34, 197, 94, 0.12) !important;
+}
+:root:not(.dark) .bg-green-500\/5 {
+  background-color: rgba(34, 197, 94, 0.04) !important;
+}
+:root:not(.dark) .bg-red-500\/20 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* ── Colored border overrides ── */
+:root:not(.dark) .border-purple-500\/20 {
+  border-color: rgba(168, 85, 247, 0.15) !important;
+}
+:root:not(.dark) .border-purple-500\/30 {
+  border-color: rgba(168, 85, 247, 0.2) !important;
+}
+:root:not(.dark) .border-blue-500\/20 {
+  border-color: rgba(59, 130, 246, 0.15) !important;
+}
+:root:not(.dark) .border-blue-500\/30 {
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+:root:not(.dark) .border-green-500\/20 {
+  border-color: rgba(34, 197, 94, 0.15) !important;
+}
+:root:not(.dark) .border-green-500\/30 {
+  border-color: rgba(34, 197, 94, 0.2) !important;
+}
+:root:not(.dark) .border-green-500\/50 {
+  border-color: rgba(34, 197, 94, 0.35) !important;
+}
+:root:not(.dark) .border-red-500\/20 {
+  border-color: rgba(239, 68, 68, 0.15) !important;
+}
+:root:not(.dark) .border-red-500\/30 {
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+:root:not(.dark) .border-yellow-500\/20 {
+  border-color: rgba(234, 179, 8, 0.15) !important;
+}
+:root:not(.dark) .border-yellow-500\/30 {
+  border-color: rgba(234, 179, 8, 0.2) !important;
+}
+:root:not(.dark) .border-indigo-500\/20 {
+  border-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+/* ── Gradient from/to with alpha ── */
+:root:not(.dark) .from-purple-500\/20 {
+  --tw-gradient-from: rgba(168, 85, 247, 0.1) !important;
+}
+:root:not(.dark) .from-red-500\/20 {
+  --tw-gradient-from: rgba(239, 68, 68, 0.1) !important;
+}
+:root:not(.dark) .from-green-500\/20 {
+  --tw-gradient-from: rgba(34, 197, 94, 0.1) !important;
+}
+:root:not(.dark) .from-yellow-500\/20 {
+  --tw-gradient-from: rgba(234, 179, 8, 0.1) !important;
+}
+:root:not(.dark) .from-indigo-500\/20 {
+  --tw-gradient-from: rgba(99, 102, 241, 0.1) !important;
+}
+:root:not(.dark) .to-blue-500\/20 {
+  --tw-gradient-to: rgba(59, 130, 246, 0.1) !important;
+}
+:root:not(.dark) .to-orange-500\/20 {
+  --tw-gradient-to: rgba(249, 115, 22, 0.1) !important;
+}
+:root:not(.dark) .to-teal-500\/20 {
+  --tw-gradient-to: rgba(20, 184, 166, 0.1) !important;
+}
+:root:not(.dark) .to-amber-500\/20 {
+  --tw-gradient-to: rgba(245, 158, 11, 0.1) !important;
+}
+:root:not(.dark) .to-cyan-500\/20 {
+  --tw-gradient-to: rgba(6, 182, 212, 0.1) !important;
+}
+:root:not(.dark) .to-violet-500\/20 {
+  --tw-gradient-to: rgba(139, 92, 246, 0.1) !important;
+}
+
+/* ── Hover background states ── */
+:root:not(.dark) .hover\:bg-white\/\[0\.04\]:hover {
+  background-color: rgba(0, 0, 0, 0.025) !important;
+}
+:root:not(.dark) .hover\:bg-blue-500\/10:hover {
+  background-color: rgba(59, 130, 246, 0.08) !important;
+}
+:root:not(.dark) .hover\:bg-purple-500\/10:hover {
+  background-color: rgba(168, 85, 247, 0.08) !important;
+}
+:root:not(.dark) .hover\:bg-green-500\/10:hover {
+  background-color: rgba(34, 197, 94, 0.08) !important;
+}
+:root:not(.dark) .hover\:bg-red-500\/10:hover {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+}
+:root:not(.dark) .hover\:bg-yellow-500\/10:hover {
+  background-color: rgba(234, 179, 8, 0.1) !important;
+}
+:root:not(.dark) .hover\:bg-slate-500\/10:hover {
+  background-color: rgba(100, 116, 139, 0.08) !important;
+}
+:root:not(.dark) .hover\:bg-amber-500\/10:hover {
+  background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+/* ── Hover text states ── */
+:root:not(.dark) .hover\:text-purple-300:hover {
+  color: #7c3aed !important;
+}
+:root:not(.dark) .hover\:text-blue-300:hover {
+  color: #2563eb !important;
+}
+:root:not(.dark) .hover\:text-blue-400:hover {
+  color: #2563eb !important;
+}
+:root:not(.dark) .hover\:text-red-400:hover {
+  color: #dc2626 !important;
+}
+:root:not(.dark) .hover\:text-slate-300:hover {
+  color: #334155 !important;
+}
+
+/* ── Data attribute states (Radix tabs) ── */
+:root:not(.dark) [data-state="active"].data-\[state\=active\]\:bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+:root:not(.dark) [data-state="active"].data-\[state\=active\]\:text-white {
+  color: #0f172a !important;
+}
+
+/* ── Global light body baseline ── */
+:root:not(.dark) body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
